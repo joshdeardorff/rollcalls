@@ -1,0 +1,15 @@
+**/bin
+**/obj
+**/*.suo
+**/*.wsuo
+**/*.sdf
+**/*.opensdf
+**/*.filters
+
+App_Data/
+wwwroot/App_Data
+
+.vs/
+.vscode/
+**/*.swp
+**/publish
