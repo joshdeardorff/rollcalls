@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using RollCalls.Entity;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +8,7 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddMvc();
 
+builder.Services.AddDbContext<RollCallContext>(options => options.UseSqlite());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

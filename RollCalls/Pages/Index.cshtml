@@ -8,3 +8,39 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<form method="post" action="/YourController/Login">
+    <select id="dropdownList" name="dropdownList" onchange="togglePassphraseBox()">
+        <option value="">Select an option</option>
+        @foreach (var item in Model.Camps)
+        {
+            <option value="@item.Value">@item.Text</option>
+        }
+    </select>
+
+    <div id="passphraseBox" style="display:none;">
+        <input type="password" name="passphrase" />
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    function togglePassphraseBox() {
+        var dropdown = document.getElementById("dropdownList");
+        var passphraseBox = document.getElementById("passphraseBox");
+        if (dropdown.value) {
+            passphraseBox.style.display = "block";
+        } else {
+            passphraseBox.style.display = "none";
+        }
+    }
+
+    document.getElementById("passphraseBox").getElementsByTagName("input")[0].addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) { // 13 is the keycode for Enter
+            event.preventDefault(); // Prevent the default action to stop from any unexpected behavior
+            document.forms[0].submit(); // Submit the first form in the document
+        }
+    });
+</script>
+
