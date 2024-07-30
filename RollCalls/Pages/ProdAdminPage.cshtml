@@ -1,0 +1,68 @@
+﻿@page
+@model ProdAdminPageModel
+
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Submissions[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Submissions[0].YouTubeLink)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Submissions[0].SpotifyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Submissions[0].SpotifyStartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Submissions[0].LightingId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Submissions[0].Microphones)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Submissions[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Submissions[0].Iteration)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Submissions) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a href="@item.YouTubeLink">@Html.DisplayFor(modelItem => item.YouTubeLink)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpotifyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpotifyStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => (EditModel._lightings.Single(l => l.Value == item.LightingId.ToString())).Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Microphones)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Iteration)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

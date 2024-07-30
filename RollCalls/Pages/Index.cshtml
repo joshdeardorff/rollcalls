@@ -1,29 +1,30 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Login page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to the Roll Call Editor!</h1>
 </div>
 
-<form method="post" action="/YourController/Login">
-    <select id="dropdownList" name="dropdownList" onchange="togglePassphraseBox()">
-        <option value="">Select an option</option>
-        @foreach (var item in Model.Camps)
-        {
-            <option value="@item.Value">@item.Text</option>
-        }
-    </select>
+<div style="margin: auto">
+    <form method="post">
+        <select id="dropdownList" name="dropdownList" onchange="togglePassphraseBox()">
+            <option value="">Select a camp</option>
+            @foreach (var item in IndexModel._camps)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
 
-    <div id="passphraseBox" style="display:none;">
-        <input type="password" name="passphrase" />
-    </div>
+        <div id="passphraseBox" style="display:none; margin-top: 7px; margin-bottom: 7px;">
+            <input type="password" name="passphrase" />
+        </div>
 
-    <button type="submit">Submit</button>
-</form>
+        <button type="submit">Log In</button>
+    </form>
+</div>
 
 <script>
     function togglePassphraseBox() {

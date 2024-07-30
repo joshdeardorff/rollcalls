@@ -1,0 +1,68 @@
+﻿@page
+@model EditModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Edit Roll Call";
+}
+
+
+<h4>@(ViewBag.Camp)'s Roll Call</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Submission.Name" />
+            <input type="hidden" asp-for="Submission.Iteration" />
+            <input type="hidden" asp-for="Submission.Id" />
+            <input type="hidden" asp-for="Submission.Position" />
+            <div class="form-group">
+                <label asp-for="Submission.YouTubeLink" class="control-label">YouTube Link</label>
+                <input asp-for="Submission.YouTubeLink" class="form-control" />
+                <span asp-validation-for="Submission.YouTubeLink" class="text-danger"></span>
+            </div>
+            <div style="margin-top: 7px; margin-bottom: 7px;"><p>- or -</p></div>
+            <div class="form-group">
+                <label asp-for="Submission.SpotifyName" class="control-label">Spotify Song</label>
+                <input asp-for="Submission.SpotifyName" class="form-control" />
+                <span asp-validation-for="Submission.SpotifyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Submission.SpotifyStartTime" class="control-label">Time To Start Song/Video</label>
+                <input asp-for="Submission.SpotifyStartTime" class="form-control" />
+                <span asp-validation-for="Submission.SpotifyStartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Submission.Microphones" class="control-label">Number of Microphones</label>
+                <input asp-for="Submission.Microphones" class="form-control" />
+                <span asp-validation-for="Submission.Microphones" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Submission.LightingId" class="control-label">Lighting Configuration</label>
+                <select asp-for="Submission.LightingId" class="form-control">
+                    <option value="0"></option>
+                    @foreach (var item in EditModel._lightings)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="Submission.LightingId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Submission.Description" class="control-label">Comments</label>
+                <input asp-for="Submission.Description" class="form-control" />
+                <span asp-validation-for="Submission.Description" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

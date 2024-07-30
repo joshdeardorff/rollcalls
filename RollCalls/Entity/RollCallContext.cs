@@ -6,11 +6,10 @@ namespace RollCalls.Entity
     {
         public RollCallContext(DbContextOptions<RollCallContext> options) : base(options) { }
 
-        public DbSet<Submission> Submissions { get; set; }
+        public DbSet<Submission> Submissions { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Submission>().ToTable("Submissions");
         }
 
     }

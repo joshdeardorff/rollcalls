@@ -5,14 +5,23 @@ namespace RollCalls.Entity
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly RollCallContext _context;
+
+        private readonly List<CampPair> _pairs;
+        public HomeController(RollCallContext context)
         {
-            return View();
+            _context = context;
+            _pairs = _context.Submissions.Select(s => new CampPair(s.Name, s.Position)).ToList();
         }
 
-        public ActionResult Login(IndexModel model)
+        [HttpPost]
+        public ActionResult SetPosition(int index, int position)
         {
-            return Ok(model);//come back to
+            var campPair = _pairs[index];
+            var camp = _context.Submissions.Single(c => c.Name == campPair.Name);
+            camp.Position = position;
+            _context.SaveChanges();
+            return new JsonResult(new { success = true, message = "Position updated successfully" });
         }
     }
 }
