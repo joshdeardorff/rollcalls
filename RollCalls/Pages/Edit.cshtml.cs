@@ -12,10 +12,7 @@ namespace RollCalls.Pages
         public static List<SelectListItem> _lightings = new()
         {
             new SelectListItem { Value = "0", Text = "Standard lighting" },
-            new SelectListItem { Value = "1", Text = "Center spotlight" },
-            new SelectListItem { Value = "2", Text = "Camp color" },
-            new SelectListItem { Value = "3", Text = "Party lights" },
-            new SelectListItem { Value = "4", Text = "All on" },
+            new SelectListItem { Value = "1", Text = "Camp color" }
         };
 
         public EditModel(RollCallContext context)
