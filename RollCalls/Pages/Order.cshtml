@@ -5,53 +5,32 @@
     ViewData["Title"] = "Order Roll Calls";
 }
 
-@section Scripts {
-	<style>
-		.grid-container {
-			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-			gap: 10px;
-		}
-		.grid-item {
-			border: 1px solid #ccc;
-			padding: 10px;
-			text-align: center;
-			cursor: pointer;
-		}
-	</style>
-}
-
-<div class="grid-container">
-	@for (int i = 0; i < Model._pairs.Count; i++)
-	{
-		<div class="grid-item" onclick="setPosition(@i)">
-			@Model._pairs[i].Name
-		</div>
-	}
-</div>
-
-
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<script>
-	let position = 1;
-	function setPosition(index) {
-		// Assuming _pairs is accessible via a global variable or an API call
-		// Here, we just log the position for demonstration
-		console.log(`Setting position for item ${index} to ${position}`);
-		// Update the position property of the item
-		// Model._pairs[index].Position = position; // This line won't work directly in JavaScript
-		$.ajax({
-			url: '/Home/SetPostition',
-			type: 'POST',
-			data: { index: index, position: position },
-			success: function (data) {
-				console.log(data);
-			},
-			error: function (error) {
-				console.error(error);
-			}
-		});
-
-		position++;
-	}
-</script>
+<form method="post">
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 40px;">Name</th>
+                <th>Position</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model._pairs.Count; i++)
+            {
+                <tr>
+                    <td>@Model._pairs[i].Name</td>
+                    <td>
+                        <input type="hidden" name="pairs[@i].Name" value="@Model._pairs[i].Name" />
+                        <select name="pairs[@i].Position">
+                            @for (int j = 1; j <= 10; j++)
+                            {
+                                <option value="@j" selected="@(Model._pairs[i].Position == j)">@j</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+	<br />
+    <button type="submit">Submit</button>
+</form>

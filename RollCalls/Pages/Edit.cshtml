@@ -17,6 +17,7 @@
             <input type="hidden" asp-for="Submission.Iteration" />
             <input type="hidden" asp-for="Submission.Id" />
             <input type="hidden" asp-for="Submission.Position" />
+            <p>Roll Calls are <em>limited to 30 second skits</em>. Please keep this in mind while planning</p>
             <div class="form-group">
                 <label asp-for="Submission.YouTubeLink" class="control-label">YouTube Link</label>
                 <input asp-for="Submission.YouTubeLink" class="form-control" />
@@ -24,20 +25,27 @@
             </div>
             <div style="margin-top: 7px; margin-bottom: 7px;"><p>- or -</p></div>
             <div class="form-group">
-                <label asp-for="Submission.SpotifyName" class="control-label">Spotify Song</label>
+                <label asp-for="Submission.SpotifyName" class="control-label">Spotify Song & Artist (no explicit songs)</label>
                 <input asp-for="Submission.SpotifyName" class="form-control" />
                 <span asp-validation-for="Submission.SpotifyName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Submission.SpotifyStartTime" class="control-label">Time To Start Song/Video</label>
+                <label asp-for="Submission.SpotifyStartTime" class="control-label">Timestamp for Song/Video to start at</label>
                 <input asp-for="Submission.SpotifyStartTime" class="form-control" />
                 <span asp-validation-for="Submission.SpotifyStartTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Submission.Microphones" class="control-label">Number of Microphones</label>
-                <input asp-for="Submission.Microphones" class="form-control" />
+                <label asp-for="Submission.Description" class="control-label">Comments/Cue of when to start music</label>
+                <input asp-for="Submission.Description" class="form-control" />
+                <span asp-validation-for="Submission.Description" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Submission.Microphones" class="control-label">Do you need a microphone?</label>
+                <input asp-for="Submission.Microphones" class="form-check-input" type="checkbox" />
                 <span asp-validation-for="Submission.Microphones" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <label asp-for="Submission.LightingId" class="control-label">Lighting Configuration</label>
                 <select asp-for="Submission.LightingId" class="form-control">
@@ -48,11 +56,6 @@
                     }
                 </select>
                 <span asp-validation-for="Submission.LightingId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Submission.Description" class="control-label">Comments</label>
-                <input asp-for="Submission.Description" class="form-control" />
-                <span asp-validation-for="Submission.Description" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">

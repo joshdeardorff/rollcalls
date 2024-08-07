@@ -56,14 +56,8 @@ namespace RollCalls.Pages
                 return Page();
             }
             Submission.Iteration++;
-            if (Submission.Iteration == 1)
-            {
-                _context.Submissions.Add(Submission);
-            }
-            else
-            {
-                _context.Submissions.Update(Submission);
-            }
+
+            _context.Submissions.Update(Submission);
             await _context.SaveChangesAsync();
             
             return RedirectToPage("/Success");

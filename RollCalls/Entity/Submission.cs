@@ -28,8 +28,7 @@ namespace RollCalls.Entity
 
         public int LightingId { get; set; } = 0;
 
-        [Range(0, 3)]
-        public int Microphones { get; set; } = 1;
+        public bool Microphones { get; set; } = false;
 
         public string? Description { get; set; }
 

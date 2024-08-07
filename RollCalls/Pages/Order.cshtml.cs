@@ -23,16 +23,31 @@ namespace RollCalls.Pages
 
         public async Task OnGetAsync()
         {
-            _pairs = await _context.Submissions.Select(s => new CampPair ( s.Name, s.Position )).ToListAsync();
+            var currentSubmissions = await _context.Submissions.Select(s => s.Id).ToListAsync();
+            _pairs = _context.Submissions.Select(sub => new CampPair( sub.Name, sub.Position )).ToList();
+            List<int> idsToAdd = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
+
+            foreach (var id in currentSubmissions)
+                idsToAdd.Remove(id);
+
+            foreach (var id in idsToAdd)
+            {
+                string name = IndexModel._camps.Single(camp => camp.Value == $"{id}").Text;
+                _pairs.Add(new CampPair (name, id));
+                _context.Submissions.Add(new Submission(id, name));
+            }
+            _context.SaveChanges();
         }
 
-        public IActionResult OnPostSetPostition(int index, int position)
+        public async Task<IActionResult> OnPostAsync(List<CampPair> pairs)
         {
-            var campPair = _pairs[index];
-            var camp = _context.Submissions.Single(c => c.Name == campPair.Name);
-            camp.Position = position;
-            _context.SaveChanges();
-            return new JsonResult(new { success = true, message = "Position updated successfully" });
+            foreach (var pair in pairs)
+            {
+                var camp = await _context.Submissions.SingleAsync(c => c.Name == pair.Name);
+                camp.Position = pair.Position;
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToPage("/Success");
         }
     }
 
@@ -45,6 +60,9 @@ namespace RollCalls.Pages
         {
             Name = name;
             Position = position;
+        }
+        public CampPair()
+        {
         }
     }
 }

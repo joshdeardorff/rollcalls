@@ -10,16 +10,16 @@ namespace RollCalls.Pages
         private string Session { get; set; }
         public static List<SelectListItem> _camps => new List<SelectListItem>
         {
-            new SelectListItem { Value = "0", Text = "Asher" },
-            new SelectListItem { Value = "1", Text = "Benji" },
-            new SelectListItem { Value = "2", Text = "Gad" },
-            new SelectListItem { Value = "3", Text = "Izzy" },
-            new SelectListItem { Value = "4", Text = "Judah" },
-            new SelectListItem { Value = "5", Text = "Levi" },
-            new SelectListItem { Value = "6", Text = "Naph" },
-            new SelectListItem { Value = "7", Text = "Reuben" },
-            new SelectListItem { Value = "8", Text = "Simeon" },
-            new SelectListItem { Value = "9", Text = "Zeb" }
+            new SelectListItem { Value = "1", Text = "Asher" },
+            new SelectListItem { Value = "2", Text = "Benji" },
+            new SelectListItem { Value = "3", Text = "Gad" },
+            new SelectListItem { Value = "4", Text = "Izzy" },
+            new SelectListItem { Value = "5", Text = "Judah" },
+            new SelectListItem { Value = "6", Text = "Levi" },
+            new SelectListItem { Value = "7", Text = "Naph" },
+            new SelectListItem { Value = "8", Text = "Reuben" },
+            new SelectListItem { Value = "9", Text = "Simeon" },
+            new SelectListItem { Value = "10", Text = "Zeb" }
         };
 
         public IndexModel()
@@ -29,7 +29,7 @@ namespace RollCalls.Pages
 
         private string SetSession()
         {
-            return Environment.GetEnvironmentVariable("Session") ?? "alpha";
+            return Environment.GetEnvironmentVariable("Session") ?? "delta";
         }
 
         public IActionResult OnGet()
